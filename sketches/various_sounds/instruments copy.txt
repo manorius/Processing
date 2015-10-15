@@ -1,0 +1,2 @@
+deep drum - startbeat: 0.0,channel: 10,instrument: 47,tempo: 229,pitch: 15,dynamic: 251,duration: 4.0,articulation: 3.4399989, pan: 64
+deep drum - startbeat: 0.0,channel: 10,instrument: 47,tempo: 229,pitch: 15,dynamic: 251,duration: 4.0,articulation: 3.4399989, pan: 64

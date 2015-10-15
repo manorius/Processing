@@ -1,0 +1,2 @@
+heavy misterious trobone - startbeat: 0.0,channel: 11,instrument: 54,pitch: 41,dynamic: 100,duration: 0.88999975,articulation: 2.4199991, pan: 64
+heavy sound instument - startbeat: 0.0,channel: 11,instrument: 58,pitch: 30,dynamic: 140,duration: 0.88999975,articulation: 2.4199991, pan: 64

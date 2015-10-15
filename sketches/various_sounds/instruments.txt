@@ -1,0 +1,1 @@
+background heavy wind - startbeat: 0.0,channel: 10,instrument: 49,pitch: 37,dynamic: 164,duration: 4.0,articulation: 0.49310806, pan: 64
