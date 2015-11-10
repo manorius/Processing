@@ -18,8 +18,10 @@ int m = millis();
 int lastTimeCheck;
 int timeIntervalFlag = 200; // 3 seconds because we are working with millis
 int printing = 0;
-String lowZ = "-82";
-String highZ = "-70";
+String lowZ = "-70";//"-82";
+String highZ = "-60";//"-70";
+String homeX = "-45";
+String homeY = "45";
 // DELAY IN MILLIS
 int delay = 8000;
 /*
@@ -41,8 +43,8 @@ initial_time = millis();
   myPort=new Serial(this, Serial.list()[5], 115200);
   // create a delay effect
 
-  img = loadImage("logo.jpg");
-image(img, 0, 0);
+  //img = loadImage("logo.jpg");
+//image(img, 0, 0);
   // DRAW BUTTONS
   noStroke();
   // RECORD
@@ -58,7 +60,7 @@ image(img, 0, 0);
   fill(100,100,100);
   rect(180,0,10,10);
   stroke(0,0,0);
-strokeWeight(1);
+strokeWeight(4);
 
 }
 
@@ -81,7 +83,7 @@ myPort.write("G21\r\n");
   myPort.write("G28\r\n");
   myPort.write("M107\r\n");  
    myPort.write("G90\r\n"); 
-   myPort.write("G1 X-60 Y60 Z-70 F3000\r\n"); 
+   myPort.write("G1 X-40 Y40 Z-70 F3000\r\n"); 
    inited = true;
 }
 
@@ -174,7 +176,7 @@ void draw()
        float x1 = map(loadedPoints.get(printing).x, 0, 200,-35, 35);
        float y1 = map(loadedPoints.get(printing).y, 0, 200,35, -35);
   // STOP EXTRUDING 10 POINTS BEFORE THE END
-  extrudedAmmount+=(printing>loadedPointsSize-25)? 0:dist(x0, y0, x1, y1)/8;
+  extrudedAmmount+=(printing>loadedPointsSize-15)? 0:dist(x0, y0, x1, y1)/8;
   println("moved: "+dist(x0, y0, x1, y1));
         // DRAW LINE
         stroke(random(254),random(254),random(254));
@@ -184,7 +186,8 @@ void draw()
       else
       {
         printing = 0;
-        myPort.write("G0 Z"+highZ+" F3000\r\n");
+        myPort.write("G0 Z-40  F7000\r\n");
+        myPort.write("G0 Z"+highZ+" X"+homeX+" Y"+homeY+"  F7000\r\n");
       }
     }
   }
