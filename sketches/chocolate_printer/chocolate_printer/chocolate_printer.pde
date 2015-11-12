@@ -18,7 +18,7 @@ int m = millis();
 int lastTimeCheck;
 int timeIntervalFlag = 200; // 3 seconds because we are working with millis
 int printing = 0;
-String lowZ = "-70";//"-82";
+String lowZ = "-72.6";//"-82";
 String highZ = "-60";//"-70";
 String homeX = "-45";
 String homeY = "45";
