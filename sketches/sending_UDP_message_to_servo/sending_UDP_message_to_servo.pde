@@ -34,13 +34,13 @@ size(300, 300);
 void draw() {;}
 
 void mouseMoved() {
-    String ip1      = "10.1.20.84";  // the remote IP address
-    String ip2       = "10.1.20.172";  // the remote IP address
+    String ip1      = "10.1.20.67";  // the remote IP address
+    String ip2       = "10.1.20.66";  // the remote IP address
     int port        = 8888;    // the destination port
     
     // formats the message for Pd
-    String message1 = round(map( mouseX,0,300,0,180))+"";
-    String message2 = round(map( mouseX,0,300,180,0))+"";
+    String message1 = constrain(round(map( mouseX,0,300,0,180)),0,180)+"";
+    String message2 = constrain(round(map( mouseX,0,300,180,0)),0,180)+"";
     println(message1+ "  " +message2);
     // send the message
     udp.send( message1, ip1, port );

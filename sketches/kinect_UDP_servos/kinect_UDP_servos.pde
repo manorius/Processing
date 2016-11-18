@@ -18,11 +18,13 @@ Kinect kinect;
 // Angle for rotation
 float a = 0;
 float r = 0;
- String ip1      = "10.1.20.84";  // the remote IP address
-    String ip2       = "10.1.20.189";  // the remote IP address
+    String ip1      = "10.1.20.67";  // RIGHT the remote IP address
+    String ip2      = "10.1.20.66";  // LEFT the remote IP address
     int port        = 8888;    // the destination port
     int averD = 0; // Average depth of central points
     int noOfAver = 0; // Number to calculate average
+    int far = 960;
+    int near = 650;
 
 // We'll use a lookup table so that we don't have to repeat the math over and over
 float[] depthLookUp = new float[2048];
@@ -85,22 +87,12 @@ int rD;
       PVector v = depthToWorld(x, y, rawDepth);
       
       float rDc = map(rD, 200, 900, 0, 255);
-      // println(rDc);
-      //println(" x:"+x+" - "+(((kinect.width/skip)*0.5)*skip)+" y:"+y+" - "+(((kinect.height/skip)*0.5)*skip));
       if(x>=xAreaStart && x<=xAreaEnd && y>=yAreaStart && y<=yAreaEnd && rD!= 2047)
       {
         averD+=rD;
         noOfAver++;
       stroke(0,255,0);
-    //  println(rD);
-     // println("x: "+x);
-     // println("y: "+y);
-//    String message1 = round(map( rD,300,770,90,180))+"";
-//    String message2 = round(map( rD,300,770,180,90))+"";
-//    println(message1+ "  " +message2);
-//     // send the message
-//    udp.send( message1, ip1, port );
-// udp.send( message2, ip2, port );
+   
       }
       else stroke(rDc,0,0);
       strokeWeight(5);
@@ -115,15 +107,13 @@ int rD;
 // SEND SIGNAL
 if(averD>0){
 int averageDepth = averD/noOfAver;
-String message1 = round(map( averageDepth,300,770,90,180))+"";
-String message2 = round(map( averageDepth,300,770,90,0))+"";
+println(averageDepth);
+String message1 = constrain(round(map( averageDepth,near,far,0,180)),0,180)+"";
+String message2 = constrain(round(map( averageDepth,near,far,180,0)),0,180)+"";
 udp.send( message1, ip1, port );
 udp.send( message2, ip2, port );
 println(message1+ "  " +message2);
 }
-// send the message
-//    udp.send( message1, ip1, port );
-// udp.send( message2, ip2, port );
 
 // RESET VALUES
 averD=0;
